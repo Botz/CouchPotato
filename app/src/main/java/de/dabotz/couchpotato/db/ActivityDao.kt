@@ -14,7 +14,7 @@ interface ActivityDao {
     fun getCurrentActivty() : Single<Activity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(activity: Activity)
+    fun insert(vararg activity: Activity)
 
     @Update
     fun update(activty: Activity)

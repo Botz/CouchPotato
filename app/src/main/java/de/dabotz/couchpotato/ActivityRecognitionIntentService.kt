@@ -4,6 +4,7 @@ import android.content.Intent
 import com.github.salomonbrys.kodein.android.KodeinIntentService
 import com.github.salomonbrys.kodein.instance
 import com.google.android.gms.location.ActivityRecognitionResult
+import com.google.android.gms.location.DetectedActivity
 import de.dabotz.couchpotato.db.Activity
 import io.reactivex.disposables.CompositeDisposable
 
