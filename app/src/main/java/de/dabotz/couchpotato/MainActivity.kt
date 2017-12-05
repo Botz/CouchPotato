@@ -15,7 +15,7 @@ class MainActivity : KodeinAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val adapter = ActivityAdapter()
-
+/*
         activityRecyclerView.adapter = adapter
 
         repository.getActivities().observe(this, Observer {
@@ -24,5 +24,6 @@ class MainActivity : KodeinAppCompatActivity() {
             adapter.items.addAll(it ?: listOf())
             adapter.notifyDataSetChanged()
         })
+        */
     }
 }
