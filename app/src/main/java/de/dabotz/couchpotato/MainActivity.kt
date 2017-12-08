@@ -1,6 +1,5 @@
 package de.dabotz.couchpotato
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
 import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity
 import com.github.salomonbrys.kodein.instance
@@ -13,6 +12,11 @@ class MainActivity : KodeinAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val circleView: CircleProgressView = circleProgress
+
+        circleView.max = 24
+        circleView.progress = 14
 
         val adapter = ActivityAdapter()
 /*

@@ -7,16 +7,12 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import android.graphics.RectF
-import android.graphics.Paint.ANTI_ALIAS_FLAG
-
-
-
 
 
 /**
  * Created by Botz on 05.12.17.
  */
-class CircleProgressView @JvmOverloads constructor(
+public class CircleProgressView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
