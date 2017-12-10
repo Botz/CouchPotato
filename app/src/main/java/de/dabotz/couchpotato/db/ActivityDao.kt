@@ -1,7 +1,7 @@
 package de.dabotz.couchpotato.db
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 /**
@@ -19,6 +19,9 @@ interface ActivityDao {
     @Update
     fun update(activty: Activity)
 
+    @Query("SELECT * FROM activity WHERE type = :type ORDER BY start DESC")
+    fun getActivitiesByType(type: Int): Flowable<List<Activity>>
+
     @Query("SELECT * FROM activity ORDER BY start DESC")
-    fun getActivities(): LiveData<List<Activity>>
+    fun getActivities(): Flowable<List<Activity>>
 }

@@ -23,7 +23,7 @@
             android:id="@+id/activityListItem_date"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:start_date="@{activity.start}"
+            android:duration="@{activity.duration}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

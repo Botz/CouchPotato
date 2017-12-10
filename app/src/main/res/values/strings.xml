@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CouchPotato</string>
+    <string name="menu_myDay">Mein Tag</string>
+    <string name="menu_list">Liste</string>
 </resources>

@@ -2,32 +2,32 @@ package de.dabotz.couchpotato
 
 import android.os.Bundle
 import com.github.salomonbrys.kodein.android.KodeinAppCompatActivity
-import com.github.salomonbrys.kodein.instance
+import de.dabotz.couchpotato.list.ActivityListFragment
+import de.dabotz.couchpotato.myDay.MyDayFragment
+
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : KodeinAppCompatActivity() {
 
-    val repository:ActivityRepository by injector.instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val circleView: CircleProgressView = circleProgress
+        bottom_navigation.setOnNavigationItemSelectedListener { item ->
+            var fragment = when(item.itemId) {
+                R.id.action_myDay -> MyDayFragment()
+                R.id.action_activityList -> ActivityListFragment()
+                else -> MyDayFragment()
+            }
 
-        circleView.max = 24
-        circleView.progress = 14
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.mainActivity_container, fragment)
+                    .commit()
+            true
+        }
 
-        val adapter = ActivityAdapter()
-/*
-        activityRecyclerView.adapter = adapter
-
-        repository.getActivities().observe(this, Observer {
-            println("LIVEDATA: ${it?.count()}")
-            adapter.items.clear()
-            adapter.items.addAll(it ?: listOf())
-            adapter.notifyDataSetChanged()
-        })
-        */
+        bottom_navigation.selectedItemId = R.id.action_myDay
     }
+
 }

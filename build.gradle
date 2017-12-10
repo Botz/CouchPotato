@@ -11,6 +11,8 @@ buildscript {
         rxAndroid_version = '2.0.1'
         rxJava_version = '2.1.7'
         gradlePlugin_version = '3.0.1'
+        rxMath_version = '1.0.0'
+        khronos_version = '0.9.0'
     }
 
     repositories {

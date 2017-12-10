@@ -3,7 +3,10 @@ package de.dabotz.couchpotato
 import com.google.android.gms.location.DetectedActivity
 import de.dabotz.couchpotato.db.Activity
 import de.dabotz.couchpotato.db.ActivityDao
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import khronos.beginningOfDay
 import java.util.*
 
 /**
@@ -28,6 +31,18 @@ class ActivityRepository(val activityDao: ActivityDao) {
                 activityDao.insert(activity)
             })
 
+    fun getActivitiesForToday(type: Int) = activityDao.getActivitiesByType(type)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .flatMap {
+                Flowable.fromIterable(it)
+            }
+            .filter {
+                it.current || it.end?.let{ it >= Date().beginningOfDay } ?: false
+            }
+
     fun getActivities() = activityDao.getActivities()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
 
 }

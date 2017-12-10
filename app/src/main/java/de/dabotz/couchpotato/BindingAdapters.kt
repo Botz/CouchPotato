@@ -8,6 +8,7 @@ import com.google.android.gms.location.DetectedActivity
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Botz on 03.12.17.
@@ -29,8 +30,8 @@ object BindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter(value= arrayOf("android:start_date"))
-    fun setDate(view:TextView, start_date:Date) {
-        view.text = SimpleDateFormat("dd.MM.yyyy  HH:mm:ss", Locale.GERMANY).format(start_date)
+    @BindingAdapter(value= arrayOf("android:duration"))
+    fun setDate(view:TextView, duration:Long) {
+        view.text = "${TimeUnit.MILLISECONDS.toMinutes(duration)} Minutes"
     }
 }
