@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by Botz on 05.12.17.
  */
-public class CircleProgressView @JvmOverloads constructor(
+open class CircleProgressView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
@@ -54,6 +54,8 @@ public class CircleProgressView @JvmOverloads constructor(
             invalidate()
         }
 
+    open fun getProgresstext() = "${TimeUnit.MILLISECONDS.toMinutes(progress)/60} Stunden ${TimeUnit.MILLISECONDS.toMinutes(progress)%60} Minuten"
+    open fun getTargetText() = "Ziel: ${TimeUnit.MILLISECONDS.toMinutes(max)/60} Stunden"
 
     override fun onDraw(canvas: Canvas) {
         outerRect.set(0f,0f, width.toFloat(), height.toFloat())
@@ -67,8 +69,8 @@ public class CircleProgressView @JvmOverloads constructor(
         canvas.drawCircle(width / 2.0f, height / 2.0f, ( width - stroke ) / 2f, backgroundPaint)
 
 
-        val progressText = "${TimeUnit.MILLISECONDS.toMinutes(progress)/60} Stunden"
-        val targetText = "Ziel: ${TimeUnit.MILLISECONDS.toMinutes(max)/60} Stunden"
+        val progressText = getProgresstext()
+        val targetText = getTargetText()
         textPaint.getTextBounds(progressText, 0, progressText.length, textRect)
         val yPosProgressText = height / 2f - (textRect.bottom - textRect.top)
         textPaint.getTextBounds(targetText, 0, targetText.length, textRect)

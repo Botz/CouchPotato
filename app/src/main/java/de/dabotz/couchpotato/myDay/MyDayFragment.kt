@@ -10,9 +10,7 @@ import com.google.android.gms.location.DetectedActivity
 import de.dabotz.couchpotato.ActivityRepository
 import de.dabotz.couchpotato.R
 import io.reactivex.disposables.CompositeDisposable
-import khronos.beginningOfDay
 import kotlinx.android.synthetic.main.fragment_myday.*
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -35,11 +33,11 @@ class MyDayFragment: KodeinSupportFragment() {
     override fun onResume() {
         super.onResume()
         circleProgress.progress = 0
-        var disposable = repository.getActivitiesForToday(DetectedActivity.STILL)
+        val disposable = repository.getDurration(DetectedActivity.STILL)
                 .subscribe({
-                    circleProgress.progress += it.durationToday.toInt()
+                    circleProgress.progress += it
                 },{
-
+                    println(it)
                 })
 
         disposableBag.add(disposable)
